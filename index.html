@@ -26,10 +26,6 @@
     .bar.bottom{ border-radius:0 0 16px 16px; }  /* arrondis vers le haut */
 
     .wrap{max-width:var(--max);margin:0 auto;padding:20px}
-    header{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{width:42px;height:42px;border-radius:12px;filter:grayscale(100%)}
-    .brand span{font-weight:800;letter-spacing:.4px}
 
     /* HERO */
     .hero{position:relative;border:1px solid var(--line);border-radius:28px;overflow:hidden;margin-top:10px;background:linear-gradient(180deg,#fff 0%,#fff 55%,#fef6fa 100%)}
@@ -45,20 +41,15 @@
     .chip{background:var(--chip);border:1px solid var(--line);padding:8px 12px;border-radius:999px}
     .chip.rose{background:#ffe7f4;border-color:#ffd2eb;color:#8a2c5c}
 
-    .cta{display:inline-flex;align-items:center;gap:10px;background:var(--rose);color:var(--noir);padding:14px 22px;border-radius:999px;font-weight:800;box-shadow:var(--shadow);transition:transform .16s ease,box-shadow .16s ease}
+    .cta{display:inline-flex;align-items:center;gap:10px;background:var(--rose);color:var(--noir);padding:14px 22px;border-radius:999px;font-weight:800;box-shadow:var(--shadow);transition:transform .16s ease,box-shadow .16s ease; white-space:nowrap}
     .cta:hover{transform:translateY(-1px);box-shadow:0 18px 60px rgba(249,145,204,.35)}
     .cta.secondary{background:#111;color:#fff;box-shadow:0 12px 36px rgba(0,0,0,.15)}
 
-    /* Bouton outline (cadre) */
-    .btn-outline{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:12px 18px;border-radius:999px;
-      border:2px solid var(--rose); background:#fff; color:var(--noir);
-      font-weight:800; box-shadow:var(--shadow);
-      transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
-    }
-    .btn-outline:hover{transform:translateY(-1px); background:#ffe7f4; box-shadow:0 14px 45px rgba(249,145,204,.25)}
-    .btn-outline svg{width:18px;height:18px;display:block}
+    /* CTA bar: CTAs à gauche, logos à droite */
+    .cta-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:6px}
+    .cta-group{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+    .logos{display:flex;gap:18px;align-items:center;flex-wrap:nowrap}
+    .logos img{height:44px} /* + grand qu'avant */
 
     .hero-right{background:#fff;padding:24px;display:flex;align-items:center;justify-content:center;border-left:1px solid var(--line)}
 
@@ -83,15 +74,38 @@
     .name{font-weight:800;color:var(--rose);margin-top:6px;text-align:center}
     .line{color:var(--muted);font-size:14px;line-height:1.35;text-align:center}
 
-    .logos{display:flex;gap:22px;align-items:center;margin-top:24px;flex-wrap:wrap}
-    .logos img{height:36px}
-
     /* SECTIONS */
     .section{padding:56px 0}
     .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{position:relative;background:var(--card);border:2px solid var(--rose);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
-    .card .ico{position:absolute;top:12px;right:12px;color:var(--rose)}
-    .card .ico svg{width:22px;height:22px;display:block}
+
+    /* Cartes mises en avant (noires, qui "claquent") */
+    .card.promo{
+      position:relative;background:linear-gradient(180deg,#fff 0%,#f9f9f9 100%);
+      border:2.5px solid var(--noir);
+      border-radius:28px;
+      padding:24px;
+      box-shadow:0 18px 60px rgba(0,0,0,.12), 0 0 0 6px rgba(249,145,204,.05);
+      transition:transform .18s ease, box-shadow .18s ease;
+      overflow:hidden;
+    }
+    .card.promo:before{
+      content:""; position:absolute; inset:-1px; border-radius:28px;
+      background:radial-gradient(600px 200px at 20% -20%, rgba(249,145,204,.18), transparent 60%),
+                 radial-gradient(600px 200px at 120% 120%, rgba(249,145,204,.10), transparent 60%);
+      pointer-events:none;
+    }
+    .card.promo:hover{ transform:translateY(-3px) scale(1.01); box-shadow:0 24px 80px rgba(0,0,0,.16), 0 0 0 8px rgba(249,145,204,.08) }
+    .card.promo .ico{position:absolute;top:14px;right:14px;color:var(--noir); opacity:.9}
+    .card.promo .ico svg{width:26px;height:26px;display:block}
+
+    /* Cartes standard (bordure rose) */
+    .card.std{
+      position:relative;background:var(--card);border:2px solid var(--rose);
+      border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)
+    }
+    .card.std .ico{position:absolute;top:12px;right:12px;color:var(--rose)}
+    .card.std .ico svg{width:22px;height:22px;display:block}
+
     .quote{font-size:18px}
     .muted{color:var(--muted)}
     .divider{height:1px;background:var(--line);margin:14px 0}
@@ -104,6 +118,18 @@
     /* FOOTER */
     footer{border-top:1px solid var(--line);padding:28px 0 20px;color:var(--muted);font-size:14px}
 
+    /* Buttons */
+    .btn-outline{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:12px 18px;border-radius:999px;
+      border:2px solid var(--rose); background:#fff; color:var(--noir);
+      font-weight:800; box-shadow:var(--shadow);
+      transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
+      white-space:nowrap;
+    }
+    .btn-outline:hover{transform:translateY(-1px); background:#ffe7f4; box-shadow:0 14px 45px rgba(249,145,204,.25)}
+    .btn-outline svg{width:18px;height:18px;display:block}
+
     /* Badge */
     .badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px dashed #ffd2eb;color:#8a2c5c;padding:6px 10px;border-radius:999px;font-size:12px}
 
@@ -114,6 +140,8 @@
       .grid3{grid-template-columns:1fr}
       .hero-right{border-left:none;border-top:1px solid var(--line)}
       .people-align{grid-template-columns:1fr;grid-template-rows:auto auto auto auto auto auto auto auto}
+      .cta-bar{gap:10px}
+      .logos img{height:36px}
     }
   </style>
 
@@ -133,24 +161,11 @@
     text-decoration:none !important;
     -webkit-tap-highlight-color:transparent; /* iOS tap */
   }
-
-  /* Flip au survol (là où c'est supporté) */
-  .flip-word:hover{
-    transform:scaleX(-1);
-    -webkit-transform:scaleX(-1);
-  }
-
-  /* Si le mot est à l'intérieur d'un lien, on évite tout style link/visited imposé */
-  a .flip-word{
-    color:inherit !important;
-    background:transparent !important;
-    text-decoration:none !important;
-  }
-
-  /* Resets pour auto-links des clients mail */
-  a[x-apple-data-detectors] { color:inherit !important; text-decoration:none !important; }
-  u + #body a { color:inherit !important; text-decoration:none !important; }
-  #MessageViewBody a { color:inherit !important; text-decoration:none !important; }
+  .flip-word:hover{ transform:scaleX(-1); -webkit-transform:scaleX(-1); }
+  a .flip-word{ color:inherit !important; background:transparent !important; text-decoration:none !important; }
+  a[x-apple-data-detectors]{ color:inherit !important; text-decoration:none !important; }
+  u + #body a{ color:inherit !important; text-decoration:none !important; }
+  #MessageViewBody a{ color:inherit !important; text-decoration:none !important; }
   </style>
 </head>
 <body>
@@ -159,13 +174,7 @@
   <div class="bar top"><div class="wrapbar"></div></div>
 
   <div class="wrap">
-    <header>
-      <div class="brand">
-  <img src="https://julie239.github.io/bootcamp/assets/logo.png" alt="Beauvoir">
-  <span>Beauvoir</span>
-</div>
-      <a class="cta" href="#form">Je candidate</a>
-    </header>
+    <!-- HEADER retiré -->
 
     <!-- HERO -->
     <section class="hero">
@@ -177,7 +186,8 @@
             <span class="chip">Accompagnement humain</span>
           </div>
 
-          <!-- Titre en 3 lignes, avec flip sur "inverse" -->
+<!-- Titre en 3 lignes, flip sur "inverse" et anti-retours à la ligne -->
+  <!-- Titre en 3 lignes, avec flip sur "inverse" -->
           <h1 class="headline">
             <span>Chez <span class="accent">Beauvoir</span>,</span>
             <span>C’est l’<span class="accent">humain</span> qui forme à la <span class="accent">Tech</span>.</span>
@@ -190,24 +200,24 @@
             </span>
           </h1>
 
-          <p class="lead">Bootcamp Tech & IA finançable par le CPF. Des projets concrets, un rythme réaliste, des retours personnalisés. <strong>Tu avances à ton rythme, semaine après semaine.</strong></p>
 
-          <div class="chips">
-            <span class="chip">400&nbsp;heures</span>
-            <span class="chip">87% de pratique</span>
-            <span class="chip">Projets concrets</span>
+<p class="lead">Bootcamp Tech & IA finançable par le CPF. Des projets concrets, un rythme réaliste, des retours personnalisés.
+  <strong>Tu avances à ton rythme, semaine après semaine.</strong>
+</p>
+
+
+          <!-- CTAs + Logos à droite -->
+          <div class="cta-bar">
+            <div class="cta-group">
+              <a class="cta" href="#candidater">Je candidate</a>
+              <a class="cta secondary" href="#cpf">Je prends rendez-vous</a>
+            </div>
+            <div class="logos" aria-label="Certifications">
+              <img src="assets/logo-cpf.jpg" alt="CPF">
+              <img src="assets/logo-qualiopi.jpg" alt="Qualiopi">
+            </div>
           </div>
 
-          <div class="chips" style="gap:14px">
-            <a class="cta" href="#form">Je candidate</a>
-            <a class="cta secondary" href="#rdv">Je prends rendez-vous</a>
-          </div>
-
-          <div class="logos">
-            <img src="assets/logo-qualiopi.jpg" alt="Qualiopi">
-            <img src="assets/logo-cpf.jpg" alt="CPF">
-            <!-- <img src="/mnt/data/Logo OPCO.jpg" alt="OPCO"> -->
-          </div>
           <div style="margin-top:10px"><span class="badge">Formation d’excellence • Esprit épuré • Ton humain</span></div>
         </div>
 
@@ -237,31 +247,31 @@
       </div>
     </section>
 
-    <!-- POURQUOI (3 cartes avec bordure rose + icônes) -->
+    <!-- POURQUOI (3 cartes mises en avant, noires) -->
     <section class="section">
       <div class="grid3">
-        <div class="card">
+        <div class="card promo">
           <span class="ico" aria-hidden="true">
             <!-- Coeur -->
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.716-4.435-9.193-6.913A5.5 5.5 0 1 1 12 6.414a5.5 5.5 0 1 1 9.193 7.673C18.716 16.565 12 21 12 21z"/></svg>
           </span>
-          <strong>Accompagnement humain</strong>
+          <strong style="font-size:18px">Accompagnement humain</strong>
           <p class="muted">Coachs et professeurs disponibles, retours réguliers, communauté active. Un accompagnement à chaque étape.</p>
         </div>
-        <div class="card">
+        <div class="card promo">
           <span class="ico" aria-hidden="true">
             <!-- Éclair -->
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 3 14h7l-1 8 11-12h-7l0-8z"/></svg>
           </span>
-          <strong>Excellence pragmatique</strong>
+          <strong style="font-size:18px">Excellence pragmatique</strong>
           <p class="muted">On pratique vraiment : briefs concrets, projets qui construisent un portfolio utile.</p>
         </div>
-        <div class="card">
+        <div class="card promo">
           <span class="ico" aria-hidden="true">
             <!-- Bouclier check -->
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l7 3v6c0 5-3.5 9.7-7 11-3.5-1.3-7-6-7-11V5l7-3zm-1 12l5-5-1.4-1.4L11 11.2 9.4 9.6 8 11l3 3z"/></svg>
           </span>
-          <strong>CPF simplifié</strong>
+          <strong style="font-size:18px">CPF simplifié</strong>
           <p class="muted">On t’accompagne pas à pas pour ton dossier sur Mon Compte Formation.</p>
         </div>
       </div>
@@ -270,7 +280,7 @@
     <!-- PROGRAMME + FORM -->
     <section class="section" id="form">
       <div class="grid3">
-        <div class="card">
+        <div class="card std">
           <strong>Programme en bref</strong>
           <div class="divider"></div>
           <ul class="muted" style="padding-left:18px;margin:0">
@@ -282,13 +292,13 @@
           <div style="margin-top:14px">
             <!-- Remplace le href par l’URL Wix de ton PDF programme -->
             <a class="btn-outline" href="/mnt/data/Programme pédagogique bootcamp.pdf" target="_blank" rel="noopener">
-              <!-- icône téléchargement -->
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v8l2.293-2.293a1 1 0 1 1 1.414 1.414l-4.007 4.007a1.25 1.25 0 0 1-1.4.244 1.25 1.25 0 0 1-.244-.244L7.05 11.12a1 1 0 1 1 1.414-1.414L10.757 12V4a1 1 0 0 1 1-1zM5 17a1 1 0 1 0 0 2h14a1 1 0 1 0 0-2H5z"/></svg>
               Télécharger le programme
             </a>
           </div>
         </div>
-        <div class="card">
+
+        <div class="card std" id="cpf">
           <strong>CPF — 3 étapes</strong>
           <div class="divider"></div>
           <ol class="muted" style="padding-left:18px;margin:0 0 14px">
@@ -296,9 +306,10 @@
             <li>On monte le dossier ensemble.</li>
             <li>Tu démarres à la prochaine session.</li>
           </ol>
-          <a class="cta secondary" href="#rdv">Je prends rendez-vous</a>
+          <a class="cta secondary" href="#cpf">Je prends rendez-vous</a>
         </div>
-        <div class="card">
+
+        <div class="card std" id="candidater">
           <strong>Candidater maintenant</strong>
           <div class="divider"></div>
           <!-- Remplace ce formulaire par ton Tally/Typeform si besoin -->
@@ -311,19 +322,27 @@
               <option>Reconversion</option><option>Montée en compétences</option><option>Autre</option>
             </select>
             <button class="cta" type="submit">Je candidate</button>
-            <small class="muted">En envoyant, tu acceptes d’être contacté et notre politique de confidentialité.</small>
+            <!-- Inclusif sans point médian (charte Beauvoir) -->
+            <small class="muted">En envoyant, tu acceptes que nous te recontactions et notre politique de confidentialité.</small>
           </form>
         </div>
       </div>
     </section>
 
-    <!-- PREUVE SOCIALE -->
+    <!-- PREUVE SOCIALE (Paméla) -->
     <section class="section">
-      <div class="card" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-        <div class="face" style="width:80px;height:80px"><img src="/mnt/data/Gus B&W Rond.png" alt="Élève"></div>
-        <div>
-          <p class="quote" style="margin:0">“Pas de blabla. J’ai prototypé, automatisé et compris comment appliquer l’IA à mon métier.”</p>
-          <p class="muted" style="margin:.4rem 0 0">Témoignage d’un élève</p>
+      <div class="card std" style="display:flex;gap:16px;align-items:center;flex-wrap:nowrap">
+        <div class="face" style="width:120px;height:120px;flex:0 0 120px;display:flex;align-items:center;justify-content:center">
+          <!-- Remplace par l’URL Wix de la photo de Paméla -->
+          <img src="assets/Pamela Miault feedback.jpg" alt="Paméla Miaut">
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+          <p class="quote" style="margin:0">
+            « Choisir Beauvoir et ce bootcamp, pour moi, c’était essentiel. 3 mois qui permettent d’aller de l’avant.
+            Chaque jour de la nouveauté, de la possibilité de me challenger et surtout d’avoir de nouvelles capacités. <br>
+            <strong>Beauvoir, c’est miser sur son avenir.</strong> »
+          </p>
+          <p class="muted" style="margin:.4rem 0 0">Paméla Miaut — Élève</p>
         </div>
       </div>
     </section>
