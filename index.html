@@ -35,7 +35,7 @@
     .cta.secondary{background:#111;color:#fff}
 
     /* Cert logos */
-    .logos{display:flex;gap:12px;align-items:center;position:absolute;top:14px;right:14px;z-index:10;margin:0}
+    
     .logos img{height:34px}
 
     /* People */
@@ -94,7 +94,10 @@
       .people-grid{gap:16px}
       .t-face{width:120px;height:120px;flex-basis:120px}
     }
-  </style>
+    /* Hover flip for “inverse” */
+  .flip-word{display:inline-block;transition:transform 1.2s ease;transform-origin:50% 50%}
+  .flip-word:hover{transform:scaleX(-1)}
+</style>
 </head>
 <body>
   <div class="wrap">
@@ -105,7 +108,7 @@
     <h1 class="headline">
       <span>Chez <span class="accent">Beauvoir</span>,</span>
       <span>C’est l’<span class="accent">humain</span><br>qui forme à&nbsp;la <span class="accent">Tech</span>.</span>
-      <span>Pas l’<a href="#" onclick="return false"><span class="accent" style="display:inline-block;transition:transform .25s" onmouseover="this.style.transition='transform 1.2s';this.style.transform='scaleX(-1)'" onmouseout="this.style.transition='transform 1.2s';this.style.transform='scaleX(1)'">inverse</span></a>.</span>
+      <span>Pas l’<span class="flip-word accent">inverse</span>.</span>
     </h1>
 
     <p class="lead">Bootcamp Tech & IA finançable par le CPF. Projets concrets, rythme réaliste, retours personnalisés.</p>
@@ -117,11 +120,6 @@
     </div>
 
     <!-- Logos certifs -->
-    <div class="logos" aria-label="Certifications">
-      <img loading="lazy" decoding="async" src="assets/logo-cpf.jpg" alt="CPF">
-      <img loading="lazy" decoding="async" src="assets/logo-qualiopi.jpg" alt="Qualiopi">
-    </div>
-
     <!-- Équipe encadrante -->
     <div class="people">
       <div class="badge-title"><span class="badge" style="font-weight:800">L’équipe encadrante 🎓</span></div>
@@ -163,7 +161,7 @@
     <div class="card">
       <strong>Programme en bref</strong>
       <div class="divider"></div>
-      <ul style="margin:0 0 10px 18px;color:var(--muted);font-size:15px">
+      <ul style="margin:0 0 10px 0;color:var(--muted);font-size:15px;padding-left:12px">
         <li>Python, JavaScript, bases de données</li>
         <li>IA appliquée : NLP, vision, modèles modernes</li>
         <li>Automation, no-code, déploiement</li>
@@ -176,7 +174,7 @@
     <div class="card" id="cpf">
       <strong>CPF — 3 étapes</strong>
       <div class="divider"></div>
-      <ol style="margin:0 0 10px 18px;color:var(--muted);font-size:15px">
+      <ol style="margin:0 0 10px 0;color:var(--muted);font-size:15px;padding-left:12px">
         <li>Vérifie ton éligibilité.</li>
         <li>On monte le dossier ensemble.</li>
         <li>Tu démarres à la prochaine session.</li>
@@ -189,7 +187,7 @@
       <strong>Candidater maintenant</strong>
       <div class="divider"></div>
       <a class="cta" href="#" data-open="modal-candidater">Je candidate</a>
-      <p class="muted" style="margin:.6rem 0 0">En envoyant, tu acceptes que nous te recontactions et notre politique de confidentialité.</p>
+      <p class="muted" style="margin:.6rem 0 0;font-size:11px;color:#999">En envoyant, tu acceptes que nous te recontactions et notre politique de confidentialité.</p>
     </div>
 
     <!-- Titre témoignages -->
