@@ -49,7 +49,7 @@
     .cta-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:6px}
     .cta-group{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
     .logos{display:flex;gap:18px;align-items:center;flex-wrap:nowrap}
-    .logos img{height:44px} /* + grand qu'avant */
+    .logos img{height:88px} /* + grand qu'avant */
 
     .hero-right{background:#fff;padding:24px;display:flex;align-items:center;justify-content:center;border-left:1px solid var(--line)}
 
@@ -143,7 +143,38 @@
       .cta-bar{gap:10px}
       .logos img{height:36px}
     }
-  </style>
+  /* ==== Mobile optimisations ==== */
+@media (max-width: 640px){
+  .wrap{padding:16px}
+  .headline{font-size:32px; line-height:1.15}
+  .lead{font-size:16px}
+  .hero{border-radius:20px}
+  .hero-left{padding:24px 20px}
+  .logos img{height:32px}
+
+  .people-card{padding:14px;border-radius:16px}
+  .face{width:96px;height:96px}
+
+  .section{padding:36px 0}
+  .card{padding:16px;border-radius:16px;box-shadow:0 8px 26px rgba(0,0,0,.08)}
+  .grid3{grid-template-columns:1fr}
+
+  /* Slider horizontal uniquement pour la section “Pourquoi” */
+  .why .grid3{display:block;overflow-x:auto;scroll-snap-type:x mandatory;white-space:nowrap;gap:0;padding-bottom:8px}
+  .why .grid3 .card{display:inline-block;vertical-align:top;width:80%;min-width:280px;margin-right:12px;scroll-snap-align:center}
+
+  /* Barres noires discrètes */
+  .bar .wrapbar{padding:3px 10px}
+
+  /* Sticky CTA bottom */
+  .mobile-sticky{
+    position:sticky; bottom:0; left:0; right:0; z-index:50; background:#fff;
+    padding:10px 16px; border-top:1px solid var(--line); display:flex; gap:10px;
+  }
+  .mobile-sticky .cta, .mobile-sticky .cta.secondary{flex:1; justify-content:center}
+}
+.program-stack{display:grid;grid-template-columns:1fr !important}
+</style>
 
   <!-- Flip word styles (fourni) -->
   <style>
@@ -174,6 +205,7 @@
   <div class="bar top"><div class="wrapbar"></div></div>
 
   <div class="wrap">
+    
     <!-- HEADER retiré -->
 
     <!-- HERO -->
@@ -190,7 +222,7 @@
   <!-- Titre en 3 lignes, avec flip sur "inverse" -->
           <h1 class="headline">
             <span>Chez <span class="accent">Beauvoir</span>,</span>
-            <span>C’est l’<span class="accent">humain</span> qui forme à la <span class="accent">Tech</span>.</span>
+            <span style="white-space:nowrap">C’est l’<span class="accent">humain</span> qui forme à&nbsp;la <span class="accent">Tech</span>.</span>
             <span>
               Pas l’
               <a href="#" style="display:inline; color:inherit; text-decoration:none; -webkit-tap-highlight-color:transparent;" onclick="return false;">
@@ -210,27 +242,29 @@
           <div class="cta-bar">
             <div class="cta-group">
               <a class="cta" href="#candidater">Je candidate</a>
-              <a class="cta secondary" href="#cpf">Je prends rendez-vous</a>
+              <a class="cta secondary" href="https://calendly.com/augustin-beauvoir/30min" target="_blank" rel="noopener">Je prends rendez-vous</a>
             </div>
             <div class="logos" aria-label="Certifications">
-              <img src="assets/logo-cpf.jpg" alt="CPF">
-              <img src="assets/logo-qualiopi.jpg" alt="Qualiopi">
+              <img loading="lazy" decoding="async" src="assets/logo-cpf.jpg" alt="CPF">
+              <img loading="lazy" decoding="async" src="assets/logo-qualiopi.jpg" alt="Qualiopi">
             </div>
           </div>
 
           <div style="margin-top:10px"><span class="badge">Formation d’excellence • Esprit épuré • Ton humain</span></div>
-        </div>
 
-        <div class="hero-right">
+        <h2 style="grid-column:1 / -1;text-align:center;font-size:26px;margin:14px 0 10px;font-weight:800;color:var(--noir);letter-spacing:.2px">
+          <span style="display:inline-block;padding:6px 14px;border-radius:999px;background:linear-gradient(90deg,#ffe7f4,rgba(249,145,204,.15) 60%, transparent);box-shadow:0 6px 20px rgba(249,145,204,.15);">L’équipe encadrante 🎓</span>
+        </h2>
+
           <!-- Cadre ajusté + alignement horizontal parfait -->
           <div class="people-card" aria-label="Équipe pédagogique">
             <div class="people-align">
               <!-- Ligne 1 : Photos -->
               <div class="face" style="grid-column:1;grid-row:1">
-                <img src="assets/Steph rond B&W.png" alt="Stéphanie Pottecher">
+                <img loading="lazy" decoding="async" src="assets/Steph rond B&W.png" alt="Stephanie Pottecher">
               </div>
               <div class="face" style="grid-column:2;grid-row:1">
-                <img src="assets/Gus B&W Rond.png" alt="Augustin Duret">
+                <img loading="lazy" decoding="async" src="assets/Gus B&W Rond.png" alt="Augustin Duret">
               </div>
               <!-- Ligne 2 : Noms -->
               <div class="name" style="grid-column:1;grid-row:2">Stéphanie Pottecher</div>
@@ -248,7 +282,7 @@
     </section>
 
     <!-- POURQUOI (3 cartes mises en avant, noires) -->
-    <section class="section">
+    <section class="section why">
       <div class="grid3">
         <div class="card promo">
           <span class="ico" aria-hidden="true">
@@ -279,7 +313,7 @@
 
     <!-- PROGRAMME + FORM -->
     <section class="section" id="form">
-      <div class="grid3">
+      <div class="grid3 program-stack">
         <div class="card std">
           <strong>Programme en bref</strong>
           <div class="divider"></div>
@@ -290,12 +324,8 @@
             <li>Marketing digital (SEO, analytics, automation)</li>
           </ul>
           <div style="margin-top:14px">
-            <!-- Remplace le href par l’URL Wix de ton PDF programme -->
-            <a class="btn-outline" href="/mnt/data/Programme pédagogique bootcamp.pdf" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v8l2.293-2.293a1 1 0 1 1 1.414 1.414l-4.007 4.007a1.25 1.25 0 0 1-1.4.244 1.25 1.25 0 0 1-.244-.244L7.05 11.12a1 1 0 1 1 1.414-1.414L10.757 12V4a1 1 0 0 1 1-1zM5 17a1 1 0 1 0 0 2h14a1 1 0 1 0 0-2H5z"/></svg>
-              Télécharger le programme
-            </a>
-          </div>
+  <iframe data-tally-src="https://tally.so/embed/wg2LEK?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="120" frameborder="0" marginheight="0" marginwidth="0" title="Télécharger le programme"></iframe>
+</div>
         </div>
 
         <div class="card std" id="cpf">
@@ -306,35 +336,27 @@
             <li>On monte le dossier ensemble.</li>
             <li>Tu démarres à la prochaine session.</li>
           </ol>
-          <a class="cta secondary" href="#cpf">Je prends rendez-vous</a>
+          <a class="cta secondary" href="https://calendly.com/augustin-beauvoir/30min" target="_blank" rel="noopener">Je prends rendez-vous</a>
         </div>
 
         <div class="card std" id="candidater">
           <strong>Candidater maintenant</strong>
           <div class="divider"></div>
           <!-- Remplace ce formulaire par ton Tally/Typeform si besoin -->
-          <form class="form">
-            <input type="text" name="firstname" placeholder="Prénom" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="tel" name="phone" placeholder="Téléphone" required>
-            <select name="goal" required>
-              <option value="" disabled selected>Objectif — choisissez</option>
-              <option>Reconversion</option><option>Montée en compétences</option><option>Autre</option>
-            </select>
-            <button class="cta" type="submit">Je candidate</button>
-            <!-- Inclusif sans point médian (charte Beauvoir) -->
-            <small class="muted">En envoyant, tu acceptes que nous te recontactions et notre politique de confidentialité.</small>
-          </form>
+          <div>
+  <iframe data-tally-src="https://tally.so/embed/mZ0lxA?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="312" frameborder="0" marginheight="0" marginwidth="0" title="Candidater maintenant"></iframe>
+</div>
         </div>
       </div>
     </section>
 
-    <!-- PREUVE SOCIALE (Paméla) -->
-    <section class="section">
+    <h2 style='text-align:center;font-size:26px;margin:0 0 8px;font-weight:800;color:var(--noir);letter-spacing:.2px'>
+  <span style="display:inline-block;padding:6px 14px;border-radius:999px;background:linear-gradient(90deg,#ffe7f4,rgba(249,145,204,.15) 60%, transparent);box-shadow:0 6px 20px rgba(249,145,204,.15);">Ce que pensent nos élèves 👩‍🎓👨‍🎓</span>
+</h2>
+<!-- PREUVE SOCIALE (Paméla) -->
       <div class="card std" style="display:flex;gap:16px;align-items:center;flex-wrap:nowrap">
         <div class="face" style="width:120px;height:120px;flex:0 0 120px;display:flex;align-items:center;justify-content:center">
-          <!-- Remplace par l’URL Wix de la photo de Paméla -->
-          <img src="assets/Pamela Miault feedback.jpg" alt="Paméla Miaut">
+          <img loading="lazy" decoding="async" src="assets/Pamela Miault feedback.jpg" alt="Paméla Miaut">
         </div>
         <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
           <p class="quote" style="margin:0">
@@ -342,7 +364,18 @@
             Chaque jour de la nouveauté, de la possibilité de me challenger et surtout d’avoir de nouvelles capacités. <br>
             <strong>Beauvoir, c’est miser sur son avenir.</strong> »
           </p>
-          <p class="muted" style="margin:.4rem 0 0">Paméla Miaut — Élève</p>
+          <p class="muted" style="margin:.4rem 0 0">Paméla Miaut (Freelance Cheffe de projet)</p>
+        </div>
+      </div>
+
+      <!-- Témoignage — Thomas Ballesteros (même format) -->
+      <div class="card std" style="display:flex;gap:16px;align-items:center;flex-wrap:nowrap;margin-top:18px">
+        <div class="face" style="width:120px;height:120px;flex:0 0 120px;display:flex;align-items:center;justify-content:center">
+          <img loading="lazy" decoding="async" src="assets/Thomas feedback no background.png" alt="Thomas Ballesteros">
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+          <p class="quote" style="margin:0">« La formation est complète, intéressante et permet d’avoir une première expérience professionnelle dans la data grâce au format alternance sur 12 mois. »</p>
+          <p class="muted" style="margin:.4rem 0 0">Thomas Ballesteros (Reconversion dev vers data)</p>
         </div>
       </div>
     </section>
@@ -350,7 +383,7 @@
     <footer id="rdv">
       <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
         <span>© Beauvoir — Formations Tech & IA</span>
-        <span><a href="#0">Mentions légales</a> · <a href="#0">Politique de confidentialité</a></span>
+        <span><a href="https://www.beauvoir.co/cgu" target="_blank" rel="noopener">Conditions légales</a></span>
       </div>
     </footer>
   </div>
@@ -373,5 +406,6 @@
       b.addEventListener('mouseleave',()=>b.style.transform='');
     });
   </script>
+  <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);} </script>
 </body>
 </html>
