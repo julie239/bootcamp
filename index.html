@@ -62,9 +62,10 @@
     .divider{height:1px;background:var(--line);margin:10px 0}
 
     /* Testimonials */
-    .t-card{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow)}
+    .t-card{display:flex;flex-direction:column;gap:10px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow)}
+.t-card > div:last-child{width:100%;}
     .t-card+.t-card{margin-top:12px}
-    .t-face{width:104px;height:104px;border-radius:50%;overflow:hidden;border:2px solid #eee;flex:0 0 104px}
+    .t-face{width:104px;height:104px;border-radius:50%;overflow:hidden;border:2px solid #eee;flex:0 0 104px;margin:0 auto 6px;}
     .quote{margin:0;font-size:15px}
     .muted{color:var(--muted);font-size:13px;margin:.35rem 0 0}
 
@@ -103,7 +104,7 @@
     <!-- Titre 3 lignes sans wrap indésirable -->
     <h1 class="headline">
       <span>Chez <span class="accent">Beauvoir</span>,</span>
-      <span style="white-space:nowrap">C’est l’<span class="accent">humain</span> qui forme à&nbsp;la <span class="accent">Tech</span>.</span>
+      <span>C’est l’<span class="accent">humain</span><br>qui forme à&nbsp;la <span class="accent">Tech</span>.</span>
       <span>Pas l’<a href="#" onclick="return false"><span class="accent" style="display:inline-block;transition:transform .25s" onmouseover="this.style.transition='transform 1.2s';this.style.transform='scaleX(-1)'" onmouseout="this.style.transition='transform 1.2s';this.style.transform='scaleX(1)'">inverse</span></a>.</span>
     </h1>
 
