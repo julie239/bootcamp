@@ -30,8 +30,8 @@
     .lead{color:var(--muted);font-size:15px;margin:6px 0 14px}
 
     /* CTAs en ligne */
-    .cta-row{display:flex;gap:10px}
-    .cta{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--rose);color:#111;padding:12px 16px;border-radius:14px;font-weight:800;box-shadow:var(--shadow)}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    .cta{flex:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:var(--rose);color:#111;padding:10px 14px;border-radius:14px;font-weight:800;box-shadow:var(--shadow);white-space:normal;text-align:center;line-height:1.1;max-width:280px}
     .cta.secondary{background:#111;color:#fff}
 
     /* Cert logos */
@@ -97,6 +97,11 @@
     /* Hover flip for “inverse” */
   .flip-word{display:inline-block;transition:transform 1.2s ease;transform-origin:50% 50%}
   .flip-word:hover{transform:scaleX(-1)}
+  /* Patch anti-espace bas Wix */
+  html, body { margin:0; padding:0; }
+  .wrap { padding-bottom: 0 !important; }
+  footer { margin:6px 0 0 !important; }
+  #SITE_CONTAINER, #comp-lowerPage { padding-bottom: 0 !important; }
 </style>
 </head>
 <body>
@@ -115,8 +120,8 @@
 
     <!-- CTAs principaux -->
     <div class="cta-row">
-      <a class="cta" href="#" data-open="modal-candidater">Je candidate</a>
-      <a class="cta secondary" href="https://calendly.com/augustin-beauvoir/30min" target="_blank" rel="noopener">Je prends rendez-vous</a>
+      <a class="cta" href="#" data-open="modal-candidater">Je<br>candidate</a>
+      <a class="cta secondary" href="https://calendly.com/augustin-beauvoir/30min" target="_blank" rel="noopener">Je&nbsp;prends<br><span style="white-space:nowrap">RDV</span></a>
     </div>
 
     <!-- Logos certifs -->
