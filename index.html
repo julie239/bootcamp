@@ -275,7 +275,7 @@
       else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement('script');s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s);} else v();
     })();
 
-    // Modales open/close — OUVERTURE À L'ENDROIT DU CLIC
+    // Modales open/close — OUVERTURE AU CLIC + CENTRAGE HORIZONTAL
     document.querySelectorAll('[data-open]').forEach(function(el){
       el.addEventListener('click',function(e){
         e.preventDefault();
@@ -286,14 +286,12 @@
         // Ouvre la modale
         m.classList.add('open');
 
-        // Positionne la carte près du déclencheur
+        // Positionne la carte verticalement près du déclencheur, mais centrée horizontalement
         var card=m.querySelector('.modal-card');
         if(!card) return;
 
-        // Mesures du bouton cliqué
         var rect=this.getBoundingClientRect();
         var desiredTop=window.scrollY + rect.bottom + 8; // sous le bouton
-        var desiredLeft=window.scrollX + rect.left + rect.width/2; // centré vs bouton
 
         // Prépare le positionnement absolu
         card.style.position='absolute';
@@ -301,7 +299,6 @@
         card.style.top='0px';
         card.style.left='0px';
 
-        // Après paint, calcule la taille réelle et contraint à la fenêtre
         requestAnimationFrame(function(){
           var w=card.offsetWidth;
           var h=card.offsetHeight;
@@ -309,11 +306,13 @@
           var viewportW=document.documentElement.clientWidth;
           var viewportH=document.documentElement.clientHeight;
 
-          var left=desiredLeft - w/2;
-          left=Math.max(window.scrollX + 14, Math.min(left, window.scrollX + viewportW - w - 14));
+          // CENTRE HORIZONTAL (milieu entre gauche et droite)
+          var centerLeft = window.scrollX + (viewportW - w) / 2;
+          // Garde un petit padding aux bords au cas où
+          var left = Math.max(window.scrollX + 14, Math.min(centerLeft, window.scrollX + viewportW - w - 14));
 
+          // Vertical: sous le bouton, sinon au-dessus si déborde
           var top=desiredTop;
-          // Si ça dépasse en bas, tente au-dessus du bouton
           if(top + h + 12 > window.scrollY + viewportH){
             top = window.scrollY + rect.top - h - 8;
             if(top < window.scrollY + 12) top = window.scrollY + 12;
