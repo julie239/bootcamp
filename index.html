@@ -177,7 +177,7 @@
 
     <!-- CPF — 3 étapes -->
     <div class="card" id="cpf">
-      <strong>CPF — 3 étapes</strong>
+      <strong>CPF : 3 étapes</strong>
       <div class="divider"></div>
       <ol style="margin:0 0 10px 0;color:var(--muted);font-size:15px;padding-left:12px">
         <li>Vérifie ton éligibilité.</li>
@@ -214,6 +214,22 @@
       <div>
         <p class="quote">« La formation est complète, intéressante et permet d’avoir une première expérience professionnelle dans la data grâce au format alternance sur 12 mois. »</p>
         <p class="muted">Thomas Ballesteros (Reconversion dev vers data)</p>
+      </div>
+    </div>
+
+    <div class="t-card">
+      <div class="t-face"><img loading="lazy" decoding="async" src="assets/Nadege.png" alt="Nadège Zongo"></div>
+      <div>
+        <p class="quote">« C’est une école humaine. Je n’ai jamais vu un tel accompagnement ailleurs, mais je l’ai trouvé à Beauvoir. »</p>
+        <p class="muted">Nadège Zongo (En alternance en tant qu'analyste de données)</p>
+      </div>
+    </div>
+
+    <div class="t-card">
+      <div class="t-face"><img loading="lazy" decoding="async" src="assets/julie.png" alt="Julie Carli"></div>
+      <div>
+        <p class="quote">« J’ai suivi le bootcamp et je l’ai trouvé très enrichissant. L’équipe pédagogique était bienveillante et à l’écoute ce qui m’a permis d’apprendre dans de bonnes conditions. »</p>
+        <p class="muted">Julie Carli (En alternance en tant qu'ingénieure en automatisation)</p>
       </div>
     </div>
 
@@ -259,10 +275,57 @@
       else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement('script');s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s);} else v();
     })();
 
-    // Modales open/close
+    // Modales open/close — OUVERTURE À L'ENDROIT DU CLIC
     document.querySelectorAll('[data-open]').forEach(function(el){
-      el.addEventListener('click',function(e){e.preventDefault(); var id=this.getAttribute('data-open'); var m=document.getElementById(id); if(m) m.classList.add('open');});
+      el.addEventListener('click',function(e){
+        e.preventDefault();
+        var id=this.getAttribute('data-open');
+        var m=document.getElementById(id);
+        if(!m) return;
+
+        // Ouvre la modale
+        m.classList.add('open');
+
+        // Positionne la carte près du déclencheur
+        var card=m.querySelector('.modal-card');
+        if(!card) return;
+
+        // Mesures du bouton cliqué
+        var rect=this.getBoundingClientRect();
+        var desiredTop=window.scrollY + rect.bottom + 8; // sous le bouton
+        var desiredLeft=window.scrollX + rect.left + rect.width/2; // centré vs bouton
+
+        // Prépare le positionnement absolu
+        card.style.position='absolute';
+        card.style.visibility='hidden';
+        card.style.top='0px';
+        card.style.left='0px';
+
+        // Après paint, calcule la taille réelle et contraint à la fenêtre
+        requestAnimationFrame(function(){
+          var w=card.offsetWidth;
+          var h=card.offsetHeight;
+
+          var viewportW=document.documentElement.clientWidth;
+          var viewportH=document.documentElement.clientHeight;
+
+          var left=desiredLeft - w/2;
+          left=Math.max(window.scrollX + 14, Math.min(left, window.scrollX + viewportW - w - 14));
+
+          var top=desiredTop;
+          // Si ça dépasse en bas, tente au-dessus du bouton
+          if(top + h + 12 > window.scrollY + viewportH){
+            top = window.scrollY + rect.top - h - 8;
+            if(top < window.scrollY + 12) top = window.scrollY + 12;
+          }
+
+          card.style.left=left+'px';
+          card.style.top=top+'px';
+          card.style.visibility='visible';
+        });
+      });
     });
+
     document.querySelectorAll('[data-close]').forEach(function(btn){
       btn.addEventListener('click',function(){ this.closest('.modal').classList.remove('open');});
     });
