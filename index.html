@@ -94,37 +94,34 @@
       .people-grid{gap:16px}
       .t-face{width:120px;height:120px;flex-basis:120px}
     }
+
     /* Hover flip for “inverse” */
     .flip-word{display:inline-block;transition:transform 1.2s ease;transform-origin:50% 50%}
     .flip-word:hover{transform:scaleX(-1)}
+
     /* Patch anti-espace bas Wix */
     html, body { margin:0; padding:0; }
     .wrap { padding-bottom: 0 !important; }
     footer { margin:6px 0 0 !important; }
     #SITE_CONTAINER, #comp-lowerPage { padding-bottom: 0 !important; }
 
-    /* ======= MOBILE: réduction + centrage + anti-overflow ======= */
-@media (max-width: 899px){
-  .modal-card{max-width:100%;width:100%;border-radius:16px;}
-  .modal-body{
-    overflow:hidden;           /* clip horizontal propre */
-    position:relative;         /* nécessaire pour bien clipper les transforms sur iOS */
-  }
-  .modal-body iframe{
-    display:block;
-    position:relative;
-    left:50%;
-    /* Largeur légèrement plus petite + hauteur 33% plus petite */
-    transform: translateX(-50%) scale(0.58, 0.67);
-    -webkit-transform: translateX(-50%) scale(0.58, 0.67);
-    transform-origin: top center;
-    -webkit-transform-origin: top center;
-    /* ~96% de largeur visible après réduction horizontale */
-    width: calc(96% / 0.58) !important;
-    max-width:none !important;
-  }
-}
-
+    /* ======= MOBILE: Réduction ~50% des Tally + pleine largeur visible ======= */
+    @media (max-width: 899px){
+      .modal-body{overflow:hidden;} /* évite le scroll horizontal dû au width compensé */
+      .modal-body iframe{
+        /* On réduit visuellement à 50% … */
+        transform: scale(0.5);
+        transform-origin: top center;
+        /* … tout en doublant la largeur pour que l’iframe apparaisse pleine largeur à l’écran */
+        width: 200% !important;
+        /* Conserve la hauteur fournie par Tally ; visuellement elle est divisée par 2 */
+      }
+      .modal-card{
+        max-width:100%;
+        width:100%;
+        border-radius:16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -202,7 +199,7 @@
     <div class="card" id="cpf">
       <strong>CPF : 3 étapes</strong>
       <div class="divider"></div>
-      <ol style="margin:0 0 10px 0;color:var(--muted);font-size:15px;padding-left:12px">
+      <ol style="margin:0 0 10px 0;color:var(--muted);font-size:15px">
         <li>Vérifie ton éligibilité.</li>
         <li>On monte le dossier ensemble.</li>
         <li>Tu démarres à la prochaine session.</li>
