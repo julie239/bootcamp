@@ -94,15 +94,35 @@
       .people-grid{gap:16px}
       .t-face{width:120px;height:120px;flex-basis:120px}
     }
+
     /* Hover flip for “inverse” */
-  .flip-word{display:inline-block;transition:transform 1.2s ease;transform-origin:50% 50%}
-  .flip-word:hover{transform:scaleX(-1)}
-  /* Patch anti-espace bas Wix */
-  html, body { margin:0; padding:0; }
-  .wrap { padding-bottom: 0 !important; }
-  footer { margin:6px 0 0 !important; }
-  #SITE_CONTAINER, #comp-lowerPage { padding-bottom: 0 !important; }
-</style>
+    .flip-word{display:inline-block;transition:transform 1.2s ease;transform-origin:50% 50%}
+    .flip-word:hover{transform:scaleX(-1)}
+
+    /* Patch anti-espace bas Wix */
+    html, body { margin:0; padding:0; }
+    .wrap { padding-bottom: 0 !important; }
+    footer { margin:6px 0 0 !important; }
+    #SITE_CONTAINER, #comp-lowerPage { padding-bottom: 0 !important; }
+
+    /* ======= MOBILE: Réduction ~50% des Tally + pleine largeur visible ======= */
+    @media (max-width: 899px){
+      .modal-body{overflow:hidden;} /* évite le scroll horizontal dû au width compensé */
+      .modal-body iframe{
+        /* On réduit visuellement à 50% … */
+        transform: scale(0.5);
+        transform-origin: top center;
+        /* … tout en doublant la largeur pour que l’iframe apparaisse pleine largeur à l’écran */
+        width: 200% !important;
+        /* Conserve la hauteur fournie par Tally ; visuellement elle est divisée par 2 */
+      }
+      .modal-card{
+        max-width:100%;
+        width:100%;
+        border-radius:16px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="wrap">
@@ -179,7 +199,7 @@
     <div class="card" id="cpf">
       <strong>CPF : 3 étapes</strong>
       <div class="divider"></div>
-      <ol style="margin:0 0 10px 0;color:var(--muted);font-size:15px;padding-left:12px">
+      <ol style="margin:0 0 10px 0;color:var(--muted);font-size:15px">
         <li>Vérifie ton éligibilité.</li>
         <li>On monte le dossier ensemble.</li>
         <li>Tu démarres à la prochaine session.</li>
