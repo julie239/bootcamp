@@ -103,16 +103,25 @@
     footer { margin:6px 0 0 !important; }
     #SITE_CONTAINER, #comp-lowerPage { padding-bottom: 0 !important; }
 
-    /* ======= MOBILE: réduction & anti-overflow, remplissage exact ======= */
+    /* ======= MOBILE: réduction + centrage + anti-overflow ======= */
     @media (max-width: 899px){
       .modal-card{max-width:100%;width:100%;border-radius:16px;}
-      .modal-body{overflow:hidden;} /* masque l'excédent dû à la compensation */
+      .modal-body{
+        overflow:hidden;           /* clip horizontal propre */
+        position:relative;         /* nécessaire pour bien clipper les transforms sur iOS */
+      }
       .modal-body iframe{
-        /* Taille visible ≈ 58% (plus grand qu'avant) */
-        transform: scale(0.58);
-        transform-origin: top left;
-        /* Compense la réduction pour occuper 100% de la largeur visible sans dépasser */
-        width: calc(100% / 0.58) !important;
+        display:block;
+        position:relative;
+        left:50%;
+        /* Échelle ~60% pour rester lisible, centré et sans dépassement */
+        transform: translateX(-50%) scale(0.6);
+        -webkit-transform: translateX(-50%) scale(0.6);
+        transform-origin: top center;
+        -webkit-transform-origin: top center;
+        /* Compense la réduction pour occuper 100% visuel de la largeur */
+        width: calc(100% / 0.6) !important; /* ≈ 166.67% */
+        max-width:none !important;
       }
     }
   </style>
